@@ -1,10 +1,11 @@
-from sqlalchemy.engine import create_engine
+from sqlalchemy.engine import create_engine, Engine
+from sqlalchemy.orm import sessionmaker
 
 from config import DATABASE_URL
 from database import create_models
 
 
-def setup():
+def setup() -> Engine:
     if 'sqlite' in DATABASE_URL:
         '''По умолчанию SQLite разрешает взаимодействовать с БД только одному потоку, но в FastAPI 
         в рамках одного и того же запроса с базой данных могут взаимодействовать более одного потока, 
@@ -15,3 +16,6 @@ def setup():
         engine = create_engine(DATABASE_URL, echo=True)
 
     create_models(engine)
+    return engine
+
+Session = sessionmaker(autoflush=False, bind=setup())
