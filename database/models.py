@@ -5,11 +5,11 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.engine import Engine
 
 
-class Base(DeclarativeBase):
+class _Base(DeclarativeBase):
     pass
 
 
-class Client(Base):
+class Client(_Base):
     __tablename__ = 'clients'
 
     id = Column(Integer())
@@ -24,7 +24,7 @@ class Client(Base):
     )
 
 
-class Coach(Base):
+class Coach(_Base):
     __tablename__ = 'coaches'
 
     id = Column(Integer())
@@ -39,7 +39,7 @@ class Coach(Base):
     )
 
 
-class TrainingType(Base):
+class TrainingType(_Base):
     __tablename__ = 'training_types'
 
     id = Column(Integer())
@@ -51,7 +51,7 @@ class TrainingType(Base):
     )
 
 
-class Training(Base):
+class Training(_Base):
     __tablename__ = 'trainings'
 
     id = Column(Integer())
@@ -64,7 +64,7 @@ class Training(Base):
     )
 
 
-class Schedule(Base):
+class Schedule(_Base):
     __tablename__ = 'schedule'
 
     date = Column(DateTime())
@@ -79,7 +79,7 @@ class Schedule(Base):
     )
 
 
-class SubscriptionType(Base):
+class SubscriptionType(_Base):
     __tablename__ = 'subscription_types'
 
     id = Column(Integer())
@@ -93,7 +93,7 @@ class SubscriptionType(Base):
     )
 
 
-class Subscription(Base):
+class Subscription(_Base):
     __tablename__ = 'subscriptions'
 
     id = Column(Integer())
@@ -108,7 +108,7 @@ class Subscription(Base):
     )
 
 
-class Visit(Base):
+class Visit(_Base):
     __tablename__ = 'visits'
 
     training_id = Column(Integer(), nullable=False)
@@ -122,4 +122,4 @@ class Visit(Base):
 
 
 def create_models(engine: Engine):
-    Base.metadata.create_all(bind=engine)
+    _Base.metadata.create_all(bind=engine)
