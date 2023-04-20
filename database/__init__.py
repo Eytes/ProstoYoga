@@ -1,4 +1,3 @@
-from database.models import create_models
-from database.setup import setup
+from database.models import *
+from database.create import engine
 from database import interfaces
-
