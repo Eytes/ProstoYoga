@@ -9,6 +9,6 @@ app = FastAPI(
     title="ProstoYoga"
 )
 
-dotenv_path = join(dirname(__file__), '../.env')
-load_dotenv(dotenv_path)
+_dotenv_path = join(dirname(__file__), '../.env')
+load_dotenv(_dotenv_path)
 DATABASE_URL = os.getenv("DATABASE_URL")
