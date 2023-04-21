@@ -5,8 +5,10 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 
 
-app = FastAPI()
+app = FastAPI(
+    title="ProstoYoga"
+)
 
-dotenv_path = join(dirname(__file__), '.env')
+dotenv_path = join(dirname(__file__), '../.env')
 load_dotenv(dotenv_path)
 DATABASE_URL = os.getenv("DATABASE_URL")

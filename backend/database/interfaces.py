@@ -1,7 +1,12 @@
 from sqlalchemy.orm import Session
 
-from database import engine
-from database.models import Client
+from backend.database import engine
+from backend.database.tables import Client
+
+
+def clients(limit: int = 10, offset: int = 0):
+    with Session(autoflush=False, bind=engine) as db:
+        return db.query(Client).offset(offset).limit(limit).all()
 
 
 def create_client(name: str, lastname: str, phone: str, patronymic: str | None = None):

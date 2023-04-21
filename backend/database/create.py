@@ -1,10 +1,11 @@
 from sqlalchemy.engine import create_engine, Engine
 
-from config import DATABASE_URL
-from database import create_models
+from backend.config import DATABASE_URL
+from backend.database import create_models
 
 
 def create_database() -> Engine:
+    # TODO: проверить существование БД. Если существует, то проверить структуру, иначе - пересоздать
     if 'sqlite' in DATABASE_URL:
         '''По умолчанию SQLite разрешает взаимодействовать с БД только одному потоку, но в FastAPI 
         в рамках одного и того же запроса с базой данных могут взаимодействовать более одного потока, 
@@ -14,7 +15,7 @@ def create_database() -> Engine:
     else:
         eng: Engine = create_engine(DATABASE_URL, echo=True)
 
-    create_models(engine)
+    create_models(eng)
     return eng
 
 
