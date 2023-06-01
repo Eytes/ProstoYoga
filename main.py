@@ -1,8 +1,8 @@
 from fastapi.responses import HTMLResponse
 
-from backend.config import app
-from backend.models import Client
-from backend.database.interfaces import clients
+from config import app
+from models import Client
+from database.interfaces import clients
 
 
 @app.get("/")
