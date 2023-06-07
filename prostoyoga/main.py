@@ -1,8 +1,12 @@
+from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-from config import app
 from models import Client
 from database.interfaces import clients
+
+app = FastAPI(
+    title="ProstoYoga"
+)
 
 
 @app.get("/")
