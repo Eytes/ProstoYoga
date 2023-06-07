@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from backend.database import engine
-from backend.database.tables import Client
+from ProstoYoga.database import engine
+from ProstoYoga.database.tables import Client
 
 
 def clients(limit: int = 10, offset: int = 0):

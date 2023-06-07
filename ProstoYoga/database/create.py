@@ -1,7 +1,7 @@
 from sqlalchemy.engine import create_engine, Engine
 
-from backend.config import DATABASE_URL
-from backend.database import create_models
+from ProstoYoga.config import DATABASE_URL
+from ProstoYoga.database import create_models
 
 
 def create_database() -> Engine:
