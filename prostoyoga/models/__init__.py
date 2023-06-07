@@ -1,1 +1,1 @@
-from ProstoYoga.models.models import *
+from prostoyoga.models.models import *
