@@ -1,1 +1,1 @@
-from ProstoYoga.database.tables import *
+from prostoyoga.database.tables import *
