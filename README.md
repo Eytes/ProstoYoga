@@ -2,21 +2,11 @@
 
 _Веб приложение для удобства ведения учета и контроля занятий_
 
-## Установка зависимостей
-- Linux, macOS, Windows (WSL)\
-_если не установлен poetry: `curl -sSL https://install.python-poetry.org | python3 -`_\
-`poetry install`
-
-- Windows (Powershell)\
-_если не установлен poetry: `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -`_\
-`poetry install`
-
 ## Запуск сервера 
 `uvicorn prostoyoga.main:app`
 
 ## Инструменты
-- MongoDB (Хранение фотографий)
-- SQLite 
+- MongoDB 
 - [Docker](https://www.docker.com/)
 - [Python](https://www.python.org/)
 - [Poetry](https://python-poetry.org/)
