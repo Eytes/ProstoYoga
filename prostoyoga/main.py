@@ -3,7 +3,6 @@ from typing import List
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-from .models import Training, User
 
 app = FastAPI(
     title="ProstoYoga"
@@ -26,7 +25,7 @@ def root():
     return HTMLResponse(content="Hello")
 
 
-@app.get("/users/{user_id}", response_model=List[User])
+@app.get("/users/{user_id}", response_model=List)
 def get_user(user_id: int):
     return [user for user in fake_users if user.get('id') == user_id]
 
@@ -43,22 +42,22 @@ def change_user_name(user_id: int, new_name: str):
     return {"status": 200, "data": current_user}
 
 
-@app.get('/training/{training_id}', response_model=List[Training])
+@app.get('/training/{training_id}', response_model=List)
 def get_training(training_id: int):
     return list(filter(lambda training: training.get('id') == training_id, fake_training))
 
 
 @app.post('/training')
-def add_training(training_list: List[Training]):
+def add_training(training_list: List):
     fake_training.extend(training_list)
     return {"status": 200, "data": fake_training}
 
 
 @app.delete('/training')
-def delete_training(training_list: List[Training]):
+def delete_training(training_list: List):
     pass
 
 
 @app.put('/training')
-def change_training(training_list: List[Training]):
+def change_training(training_list: List):
     pass

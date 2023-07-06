@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "prostooga"
+name = "prostoyoga"
 version = "0.1.0"
 description = ""
 authors = ["Eytes <yura.shamanov2000@bk.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.11"
 fastapi = {extras = ["all"], version = "^0.96.0"}
-sqlalchemy = "^2.0.15"
+pymongo = "^4.4.0"
 
 
 [build-system]
