@@ -15,11 +15,19 @@ env:
 
 jobs:
   linting_black:
-    name: Linting with black
+    name: Black lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.11", "3.12" ]
     steps:
       - name: Get repository code
         uses: actions/checkout@v4
+
+      - name: Set up Python (${{ matrix.python-version }})
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Run black
         uses: psf/black@stable
@@ -27,3 +35,27 @@ jobs:
           options: "--check --verbose --diff --color"
           src: "${{ env.path }}"
           version: "24.2.0"
+
+  linting_flake:
+    name: Flake8 lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.11", "3.12" ]
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python (${{ matrix.python-version }})
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: flake8 Lint
+        uses: py-actions/flake8@v2
+        with:
+          max-line-length: 88
+          show-source: true
+          statistics: true
+          path: "${{ env.path }}"
+          plugins: "flake8-bugbear"
