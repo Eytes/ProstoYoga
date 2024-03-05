@@ -54,8 +54,7 @@ jobs:
       - name: flake8 Lint
         uses: py-actions/flake8@v2
         with:
+          args: "show-source statistics"
           max-line-length: 88
-          show-source: true
-          statistics: true
           path: "${{ env.path }}"
           plugins: "flake8-bugbear"
