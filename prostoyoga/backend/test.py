@@ -5,7 +5,6 @@ def test(a: int, b: str) -> bool:
 def main():
     test(10, 123)
     print()
-    print()
 
 
 if __name__ == "__main__":
