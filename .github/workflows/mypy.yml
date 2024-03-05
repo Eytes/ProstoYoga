@@ -27,4 +27,4 @@ jobs:
         run: pip install mypy
 
       - name: Run mypy
-        run: mypy ${{ inputs.source_path }}
+        run: mypy --check-untyped-defs ${{ inputs.source_path }}
