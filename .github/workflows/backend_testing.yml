@@ -17,9 +17,6 @@ jobs:
     steps:
       - name: Get backend code
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: ${{ inputs.source_path }}
-          sparse-checkout-cone-mode: false
 
       - name: Install Poetry
         run: pip install poetry
@@ -28,9 +25,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ inputs.python-version }}
+          cache: "poetry"
 
       - name: Install dependencies
-        run: poetry install --with dev
+        run: |
+          cd ${{ inputs.source_path }}
+          poetry install --with dev
 
       - name: Run tests
-        run: poetry run pytest .
+        run: |
+          cd ${{ inputs.source_path }}
+          poetry run pytest .

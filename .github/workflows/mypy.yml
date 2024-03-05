@@ -17,17 +17,15 @@ jobs:
     steps:
       - name: Get backend code
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: ${{ inputs.source_path }}
-          sparse-checkout-cone-mode: false
 
       - name: Set up Python${{ inputs.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ inputs.python-version }}
+          cache: "pip"
 
       - name: Install Mypy
         run: pip install mypy
 
       - name: Run mypy
-        run: mypy --check-untyped-defs .
+        run: mypy --check-untyped-defs ${{ inputs.source_path }}
