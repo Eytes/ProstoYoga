@@ -7,10 +7,10 @@ env:
 on:
   push:
     paths:
-      - ${{ env.path }}/**
+      - prostoyoga/backend/**
   pull_request:
     paths:
-      - ${{ env.path }}/**
+      - prostoyoga/backend/**
 
 jobs:
   linting_black:
