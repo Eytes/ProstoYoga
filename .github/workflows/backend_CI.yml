@@ -52,3 +52,14 @@ jobs:
     with:
       source_path: ${{ needs.prepare_backend_path.outputs.backend_path }}
       python-version: ${{ matrix.python-version }}
+
+  testing:
+    name: Run backend tests (Python${{ matrix.python-version }})
+    needs: [ prepare_backend_path, linting_black, linting_flake8, typing_mypy ]
+    strategy:
+      matrix:
+        python-version: [ "3.11", "3.12" ]
+    uses: ./.github/workflows/backend_testing.yml
+    with:
+      source_path: ${{ needs.prepare_backend_path.outputs.backend_path }}
+      python-version: ${{ matrix.python-version }}
