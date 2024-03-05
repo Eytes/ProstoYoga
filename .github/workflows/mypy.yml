@@ -1,0 +1,30 @@
+name: Type checking with mypy
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        required: true
+        type: string
+      source_path:
+        required: true
+        type: string
+
+jobs:
+  typing_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+          cache: "pip"
+
+      - name: Install Mypy
+        run: pip install mypy
+
+      - name: Run mypy
+        run: mypy ${{ inputs.source_path }}
