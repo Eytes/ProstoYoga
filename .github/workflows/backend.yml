@@ -1,0 +1,29 @@
+name: Backend lint and tests
+
+run-name: ${{ github.event_name }} to ${{ github.ref_name }} by @${{ github.actor }}
+
+on:
+  push:
+    paths:
+      - prostoyoga/backend/**
+  pull_request:
+    paths:
+      - prostoyoga/backend/**
+
+env:
+  path: ./prostoyoga/backend
+
+jobs:
+  linting_black:
+    name: Linting with black
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Run black
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose --diff --color"
+          src: "${{ env.path }}"
+          version: "24.2.0"
