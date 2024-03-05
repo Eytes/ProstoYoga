@@ -22,7 +22,7 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: See folder
-        run: ls -la ./*
+        run: ls -la
 
       - name: Set up Python${{ inputs.python-version }}
         uses: actions/setup-python@v5
