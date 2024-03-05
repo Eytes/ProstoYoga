@@ -3,7 +3,7 @@ def test(a: int, b: str) -> bool:
 
 
 def main():
-    test(10, "qwe")
+    test(a=10, b="qwe")
 
 
 if __name__ == "__main__":
