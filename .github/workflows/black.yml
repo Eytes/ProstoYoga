@@ -19,7 +19,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           show-progress: true
-          filter: ${{ inputs.source_path }}/*
+          sparse-checkout: ${{ inputs.source_path }}
+          sparse-checkout-cone-mode: false
 
       - name: Set up Python (${{ inputs.python-version }})
         uses: actions/setup-python@v5
