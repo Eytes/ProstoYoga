@@ -22,11 +22,10 @@ jobs:
       - name: Get backend code
         uses: actions/checkout@v4
         with:
-          show-progress: true
           sparse-checkout: ${{ inputs.source_path }}
           sparse-checkout-cone-mode: false
 
-      - name: Set up Python
+      - name: Set up Python${{ inputs.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ inputs.python-version }}
@@ -35,7 +34,4 @@ jobs:
         run: pip install flake8 flake8-bugbear
 
       - name: Flake8 linting
-        run: |
-          flake8 --statistics --show-source \
-          --max-line-length ${{ inputs.max-line-length }} \
-          ${{ inputs.source_path }}
+        run: flake8 --statistics --show-source --max-line-length ${{ inputs.max-line-length }} .
