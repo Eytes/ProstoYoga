@@ -21,6 +21,9 @@ jobs:
           sparse-checkout: ${{ inputs.source_path }}
           sparse-checkout-cone-mode: false
 
+      - name: See folder
+        run: apt install tree && tree .
+
       - name: Set up Python${{ inputs.python-version }}
         uses: actions/setup-python@v5
         with:
