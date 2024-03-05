@@ -3,7 +3,7 @@ def test(a: int, b: str) -> bool:
 
 
 def main():
-    test(10, 123)
+    test(10, "sdfgh")
     print()
 
 
