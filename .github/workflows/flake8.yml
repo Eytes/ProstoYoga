@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           show-progress: true
-          filter: ${{ inputs.source_path }}/**
+          filter: ${{ inputs.source_path }}/*
 
       - name: Set up Python
         uses: actions/setup-python@v5
