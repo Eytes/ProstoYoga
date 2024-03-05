@@ -6,8 +6,15 @@ authors = ["Eytes <yura.shamanov2000@bk.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+pytest = "^8.0.2"
+mypy = "^1.8.0"
+flake8 = "^7.0.0"
+flake8-bugbear = "^24.2.6"
 
 [build-system]
 requires = ["poetry-core"]
