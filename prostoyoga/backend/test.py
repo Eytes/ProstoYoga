@@ -1,5 +1,9 @@
+def test(a: int, b: str) -> bool:
+    return True
+
+
 def main():
-    pass
+    test(10, "qwe")
 
 
 if __name__ == "__main__":
