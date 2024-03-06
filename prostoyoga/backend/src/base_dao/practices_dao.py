@@ -6,7 +6,7 @@ from .base_models import PracticeModel, UserModel
 from .base_types import EntryId
 
 
-class PracticeDAO(ABC):
+class PracticesDAO(ABC):
     @abstractmethod
     async def get_by_id(self, practice_id: EntryId) -> PracticeModel:
         """Получить данные о практике"""
@@ -14,9 +14,9 @@ class PracticeDAO(ABC):
 
     @abstractmethod
     async def get_in_the_period(
-        self,
-        start_at: datetime,
-        end_at: datetime,
+            self,
+            start_at: datetime,
+            end_at: datetime,
     ) -> Iterable[PracticeModel]:
         # TODO: добавить фильтр по типу практик
         """Получить практики за период"""
@@ -39,18 +39,18 @@ class PracticeDAO(ABC):
 
     @abstractmethod
     async def register_the_user_by_id(
-        self,
-        user_id: EntryId,
-        practice_id: EntryId,
+            self,
+            user_id: EntryId,
+            practice_id: EntryId,
     ) -> None:
         """Записать пользователя на практику"""
         pass
 
     @abstractmethod
     async def remove_the_user_by_id(
-        self,
-        user_id: EntryId,
-        practice_id: EntryId,
+            self,
+            user_id: EntryId,
+            practice_id: EntryId,
     ) -> None:
         """Снять запись пользователя с практики"""
         pass
