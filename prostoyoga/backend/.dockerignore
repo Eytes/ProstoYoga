@@ -1,0 +1,6 @@
+README.md
+Dockerfile
+tests/
+.idea
+__pycache__
+.vscode
