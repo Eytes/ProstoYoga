@@ -18,6 +18,9 @@ jobs:
       - name: Get backend code
         uses: actions/checkout@v4
 
+      - name: Install poetry
+        run: pip install poetry
+
       - name: Set up Python${{ inputs.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -26,7 +29,6 @@ jobs:
 
       - name: Install dependences
         run: |
-          pip install poetry
           cd ${{ inputs.source_path }}
           poetry install
 
