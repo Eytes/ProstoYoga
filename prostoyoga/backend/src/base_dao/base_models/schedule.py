@@ -5,6 +5,8 @@ from ..base_types import EntryId
 
 
 class _PracticeInScheduleBaseModel(MixinStartEndTime):
+    """Базовые поля, содержащиеся во всех моделях расписания"""
+
     practice_id: EntryId
     master_id: EntryId
 
