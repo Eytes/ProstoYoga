@@ -22,7 +22,7 @@ class CreatePracticeModel(MixinId, _PracticeBaseModel):
     pass
 
 
-class UpdatePracticeModel(_PracticeBaseModel):
+class UpdatePracticeModel(BaseModel):
     """Модель данных для обновления данных о практике"""
 
     title: str | None = None

@@ -23,7 +23,7 @@ class CreateMasterModel(MixinId, _MasterBaseModel):
     pass
 
 
-class UpdateMasterModel(_MasterBaseModel):
+class UpdateMasterModel(BaseModel):
     """Модель данных для обновления данных о мастере"""
 
     first_name: str | None = None

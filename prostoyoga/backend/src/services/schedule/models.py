@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from pydantic import BaseModel
+
 from ..mixins import MixinStartEndTime, MixinId
 from ..types import EntryId
 
@@ -29,7 +31,7 @@ class CreatePracticeInScheduleModel(MixinId, _PracticeInScheduleBaseModel):
     pass
 
 
-class UpdatePracticeInScheduleModel(_PracticeInScheduleBaseModel):
+class UpdatePracticeInScheduleModel(BaseModel):
     """
     Модель данных для обновления записи в расписании о проведении практики
     с мастером и указанием времени начала и конца проведения практики

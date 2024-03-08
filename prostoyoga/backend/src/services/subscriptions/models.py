@@ -6,7 +6,7 @@ from ..mixins import MixinStartEndTime, MixinId
 from ..types import EntryId
 
 
-class _SubscriptionBaseModel(BaseModel, MixinStartEndTime):
+class _SubscriptionBaseModel(MixinStartEndTime, BaseModel):
     """Базовые поля, содержащиеся во всех моделях абонемента"""
 
     first_name: str
@@ -22,7 +22,7 @@ class SubscriptionModel(_SubscriptionBaseModel):
     registration_date: datetime
 
 
-class UpdateSubscriptionModel(_SubscriptionBaseModel):
+class UpdateSubscriptionModel(BaseModel):
     """Модель для обновления данных абонемента (профиля пользователя)"""
 
     # TODO: добавить валидацию:
@@ -36,8 +36,8 @@ class UpdateSubscriptionModel(_SubscriptionBaseModel):
     second_name: str | None = None
     phone: str | None = None
     remaining_visits: int | None = None
-    start_at: datetime | None
-    end_at: datetime | None
+    start_at: datetime | None = None
+    end_at: datetime | None = None
 
 
 class CreateSubscriptionModel(MixinId, _SubscriptionBaseModel):
