@@ -19,7 +19,9 @@ class ScheduleInterfaces(ABC):
         end_at: datetime,
     ) -> Iterable[PracticeInScheduleModel]:
         # TODO: добавить фильтр по типу практик
-        """Получить практики за период от start_at до end_at включительно"""
+        """
+        Получить практики за период от start_at до end_at включительно
+        """
         pass
 
     @abstractmethod
@@ -27,12 +29,18 @@ class ScheduleInterfaces(ABC):
         self,
         practice_data: CreatePracticeInScheduleModel,
     ) -> EntryId:
-        """Внести запись о практике в расписание. Возвращается id записи в расписании"""
+        """
+        Внести запись о практике в расписание.
+        Возвращается id записи в расписании
+        """
         pass
 
     @abstractmethod
     async def delete_practice(self, schedule_entry_id: EntryId) -> EntryId:
-        """Удалить запись о практике из расписания. Возвращается id удаленной записи в расписании"""
+        """
+        Удалить запись о практике из расписания.
+        Возвращается id удаленной записи в расписании
+        """
         pass
 
     @abstractmethod
@@ -41,7 +49,10 @@ class ScheduleInterfaces(ABC):
         schedule_entry_id: EntryId,
         practice_data: UpdatePracticeInScheduleModel,
     ) -> EntryId:
-        """Обновить данные о практике из расписания. Возвращает id обновленной записи в расписании"""
+        """
+        Обновить данные о практике из расписания.
+        Возвращает id обновленной записи в расписании
+        """
         pass
 
     @abstractmethod
@@ -72,6 +83,8 @@ class ScheduleInterfaces(ABC):
 
     @abstractmethod
     async def get_master_of_schedule_entry(self, schedule_entry_id: EntryId):
-        """Получить данные о мастере, который будет проводить запланированную практику"""
+        """
+        Получить данные о мастере, который будет проводить запланированную практику
+        """
         # TODO: придумать модели для мастеров
         pass
