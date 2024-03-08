@@ -1,10 +1,14 @@
 from abc import ABC, abstractmethod
 
-from .base_models.master import MasterModel, CreateMasterModel, UpdateMasterModel
-from .base_types import EntryId
+from .models import (
+    MasterModel,
+    CreateMasterModel,
+    UpdateMasterModel,
+)
+from ..types import EntryId
 
 
-class MastersDAO(ABC):
+class MastersInterfaces(ABC):
     @abstractmethod
     async def get_by_id(self, master_id: EntryId) -> MasterModel:
         """Получить данные о мастере"""

@@ -2,16 +2,16 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Iterable
 
-from .base_models.schedule import (
+from ..schedule.models import (
     UpdatePracticeInScheduleModel,
     PracticeInScheduleModel,
     CreatePracticeInScheduleModel,
 )
-from .base_models.subscription import SubscriptionModel
-from .base_types import EntryId
+from ..subscriptions.models import SubscriptionModel
+from ..types import EntryId
 
 
-class ScheduleDAO(ABC):
+class ScheduleInterfaces(ABC):
     @abstractmethod
     async def get_practices_in_the_period(
         self,

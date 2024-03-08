@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from .mixins import MixinStartEndTime, MixinId
-from ..base_types import EntryId
+from ..mixins import MixinStartEndTime, MixinId
+from ..types import EntryId
 
 
 class _PracticeInScheduleBaseModel(MixinStartEndTime):

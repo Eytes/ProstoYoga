@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
 
-from .base_models.practice import (
+from .models import (
     PracticeModel,
     CreatePracticeModel,
     UpdatePracticeModel,
 )
-from .base_types import EntryId
+from ..types import EntryId
 
 
-class PracticesDAO(ABC):
+class PracticesInterfaces(ABC):
     @abstractmethod
     async def get_by_id(self, practice_id: EntryId) -> PracticeModel:
         """Получить данные о практике"""

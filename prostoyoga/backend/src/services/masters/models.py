@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from .mixins import MixinId
-from ..base_types import EntryId
+from ..mixins import MixinId
+from ..types import EntryId
 
 
 class _MasterBaseModel(BaseModel):
