@@ -1,8 +1,16 @@
 version: "3"
 
 services:
-  db:
-    image:
+  mongodb:
+    image: "mongo:latest"
+    container_name: "mongodb"
+    restart: always
+    volumes: [ "mongo_data:/data/db_api" ]
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
     networks: [ back ]
 
   backend:
@@ -18,3 +26,6 @@ networks:
     driver: "bridge"
   front:
     driver: "bridge"
+
+volumes:
+  mongo_data:
