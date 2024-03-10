@@ -14,9 +14,9 @@ from ..types import EntryId
 class ScheduleInterfaces(ABC):
     @abstractmethod
     async def get_practices_in_the_period(
-        self,
-        start_at: datetime,
-        end_at: datetime,
+            self,
+            start_at: datetime,
+            end_at: datetime,
     ) -> Iterable[PracticeInScheduleModel]:
         # TODO: добавить фильтр по типу практик
         """
@@ -26,8 +26,8 @@ class ScheduleInterfaces(ABC):
 
     @abstractmethod
     async def add_practice(
-        self,
-        practice_data: CreatePracticeInScheduleModel,
+            self,
+            practice_data: CreatePracticeInScheduleModel,
     ) -> EntryId:
         """
         Внести запись о практике в расписание.
@@ -45,9 +45,9 @@ class ScheduleInterfaces(ABC):
 
     @abstractmethod
     async def update_practice(
-        self,
-        schedule_entry_id: EntryId,
-        practice_data: UpdatePracticeInScheduleModel,
+            self,
+            schedule_entry_id: EntryId,
+            practice_data: UpdatePracticeInScheduleModel,
     ) -> EntryId:
         """
         Обновить данные о практике из расписания.
@@ -57,26 +57,26 @@ class ScheduleInterfaces(ABC):
 
     @abstractmethod
     async def register_the_subscription_by_id(
-        self,
-        schedule_entry_id: EntryId,
-        subscription_id: EntryId,
+            self,
+            schedule_entry_id: EntryId,
+            subscription_id: EntryId,
     ) -> None:
         """Записать абонемент на практику из расписания"""
         pass
 
     @abstractmethod
     async def remove_the_subscription_by_id(
-        self,
-        schedule_entry_id: EntryId,
-        subscription_id: EntryId,
+            self,
+            schedule_entry_id: EntryId,
+            subscription_id: EntryId,
     ) -> None:
         """Снять запись абонемента с практики из расписания"""
         pass
 
     @abstractmethod
     async def get_registered_subscriptions(
-        self,
-        schedule_entry_id: EntryId,
+            self,
+            schedule_entry_id: EntryId,
     ) -> Iterable[SubscriptionModel]:
         """Получить абонементы, записавшиеся на занятие"""
         pass
@@ -86,5 +86,4 @@ class ScheduleInterfaces(ABC):
         """
         Получить данные о мастере, который будет проводить запланированную практику
         """
-        # TODO: придумать модели для мастеров
         pass
