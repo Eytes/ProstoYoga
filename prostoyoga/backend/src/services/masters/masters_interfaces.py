@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 
+from src.types import EntryId
 from .models import (
     MasterModel,
     CreateMasterModel,
     UpdateMasterModel,
 )
-from ..types import EntryId
 
 
 class MastersInterfaces(ABC):

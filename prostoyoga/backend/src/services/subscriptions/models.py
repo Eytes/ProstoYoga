@@ -2,8 +2,8 @@ from datetime import datetime, UTC
 
 from pydantic import Field, BaseModel
 
+from src.types import EntryId
 from ..mixins import MixinStartEndTime, MixinId
-from ..types import EntryId
 
 
 class _SubscriptionBaseModel(MixinStartEndTime, BaseModel):

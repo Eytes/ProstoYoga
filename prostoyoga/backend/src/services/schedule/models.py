@@ -2,8 +2,8 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
+from src.types import EntryId
 from ..mixins import MixinStartEndTime, MixinId
-from ..types import EntryId
 
 
 class _PracticeInScheduleBaseModel(MixinStartEndTime):

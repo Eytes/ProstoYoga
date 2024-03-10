@@ -3,7 +3,7 @@ from uuid import uuid4
 
 from pydantic import BaseModel, Field
 
-from .types import EntryId
+from src.types import EntryId
 
 
 class MixinId(BaseModel):

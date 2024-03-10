@@ -1,11 +1,10 @@
 from pydantic import BaseModel
 
+from src.types import EntryId
 from ..mixins import MixinId
-from ..types import EntryId
 
 
 class _MasterBaseModel(BaseModel):
-
     first_name: str
     second_name: str
     phone: str

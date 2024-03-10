@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 
+from src.types import EntryId
 from .models import (
     PracticeModel,
     CreatePracticeModel,
     UpdatePracticeModel,
 )
-from ..types import EntryId
 
 
 class PracticesInterfaces(ABC):
