@@ -16,7 +16,12 @@ class AbstractRegistry(ABC):
         pass
 
     @abstractmethod
-    async def get(self, query: RegistryQuery) -> Sequence[RegistryData]:
+    async def get(
+        self,
+        query: RegistryQuery,
+        skip: int | None = None,
+        limit: int | None = None,
+    ) -> Sequence[RegistryData]:
         """
         Получить записи из БД по параметрам из query
 
