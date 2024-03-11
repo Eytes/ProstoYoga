@@ -25,17 +25,21 @@ class AbstractRegistry(ABC):
         pass
 
     @abstractmethod
-    async def update(self, query: RegistryQuery, data: RegistryData) -> RegistryData:
+    async def update(self, query: RegistryQuery, data: RegistryData) -> int:
         """
         Обновить запись в БД:
         - Поиск записи по значениям из параметров query
         - Новые данные из параметров data
 
-        Возвращается обновленная запись
+        Возвращается количество обновленных записей
         """
         pass
 
     @abstractmethod
-    async def delete(self, query: RegistryQuery) -> None:
-        """Удаление записей из БД, по фильтру из query"""
+    async def delete(self, query: RegistryQuery) -> int:
+        """
+        Удаление записей из БД, по фильтру query
+
+        Возвращается количество удаленных записей
+        """
         pass
