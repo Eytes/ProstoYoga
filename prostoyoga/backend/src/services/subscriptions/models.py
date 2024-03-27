@@ -1,15 +1,16 @@
+
 from datetime import datetime, UTC
 
-from pydantic import Field, BaseModel, constr, validator
+from pydantic import Field, BaseModel, constr, root_validator
 
 from src.types import EntryId
 from ..mixins import MixinStartEndTime, MixinId
 
 
 class PhoneNumber(BaseModel):
-    number: constr[min_length==11, max_length==12]
+    number: constr[min_length == 11, max_length == 12]
 
-    @validator('number')
+    @root_validator('number')
     def validate_phone_number(cls, phone_number):
         # Проверка длины номера и начала (8 или +7)
         if len(phone_number) == 11 and phone_number.startswith('8'):
@@ -40,7 +41,7 @@ class CreateSubscriptionModel(MixinId, _SubscriptionBaseModel):
     """Модель для создания абонемента пользователя"""
 
     registration_date: datetime = Field(
-        default_factory=lambda: datetime.now(UTC).date()
+        default_factory=lambda: datetime.now(UTC)
     )
 
 
@@ -48,8 +49,8 @@ class UpdateSubscriptionModel(BaseModel, _SubscriptionBaseModel):
     """Модель для обновления данных абонемента (профиля пользователя)"""
 
     start_at: datetime = Field(
-        default_factory=lambda: datetime.now(UTC).date()
+        default_factory=lambda: datetime.now(UTC)
     )
     end_at: datetime = Field(
-        default_factory=lambda: datetime.now(UTC).date()
+        default_factory=lambda: datetime.now(UTC)
     )
