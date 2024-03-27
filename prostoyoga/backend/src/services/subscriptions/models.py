@@ -1,6 +1,6 @@
 from datetime import datetime, UTC
 
-from pydantic import Field, BaseModel, constr, root_validator
+from pydantic import Field, BaseModel, constr, validator
 
 from src.types import EntryId
 from ..mixins import MixinStartEndTime, MixinId
@@ -9,7 +9,7 @@ from ..mixins import MixinStartEndTime, MixinId
 class PhoneNumber(BaseModel):
     number: constr(min_length == 11, max_length == 12)
 
-    @root_validator("number")
+    @validator("number")
     def validate_phone_number(cls, phone_number):
         # Проверка длины номера и начала (8 или +7)
         if len(phone_number) == 11 and phone_number.startswith("8"):
