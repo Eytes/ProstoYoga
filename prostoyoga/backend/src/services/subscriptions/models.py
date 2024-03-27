@@ -1,4 +1,3 @@
-
 from datetime import datetime, UTC
 
 from pydantic import Field, BaseModel, constr, root_validator
@@ -8,7 +7,7 @@ from ..mixins import MixinStartEndTime, MixinId
 
 
 class PhoneNumber(BaseModel):
-    number: constr[min_length == 11, max_length == 12]
+    number: constr(min_length == 11, max_length == 12)
 
     @root_validator("number")
     def validate_phone_number(cls, phone_number):
