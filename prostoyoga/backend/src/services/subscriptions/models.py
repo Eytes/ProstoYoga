@@ -1,18 +1,32 @@
 from datetime import datetime, UTC
 
-from pydantic import Field, BaseModel
+from pydantic import Field, BaseModel, constr, validator
 
 from src.types import EntryId
 from ..mixins import MixinStartEndTime, MixinId
 
 
+class PhoneNumber(BaseModel):
+    number: constr(min_length=11, max_length=12)
+
+    @validator('number')
+    def validate_phone_number(cls, phone_number):
+        # Проверка длины номера и начала (8 или +7)
+        if len(phone_number) == 11 and phone_number.startswith('8'):
+            return phone_number[1:]
+        elif len(phone_number) == 12 and phone_number.startswith('+7'):
+            return phone_number[2:]
+        else:
+            raise ValueError("Неверный формат номера телефона")
+
+
 class _SubscriptionBaseModel(MixinStartEndTime, BaseModel):
     """Базовые поля, содержащиеся во всех моделях абонемента"""
 
-    first_name: str
-    second_name: str
-    phone: str
-    remaining_visits: int
+    first_name: str = Field(min_length=3)
+    second_name: str = Field(min_length=3)
+    phone: PhoneNumber.number
+    remaining_visits: int = Field(ge=0, default=0)
 
 
 class SubscriptionModel(_SubscriptionBaseModel):
@@ -22,40 +36,20 @@ class SubscriptionModel(_SubscriptionBaseModel):
     registration_date: datetime
 
 
-class UpdateSubscriptionModel(BaseModel):
-    """Модель для обновления данных абонемента (профиля пользователя)"""
-
-    # TODO: добавить валидацию:
-    #   - имя и фамилия должны быть длиннее 2 символов и содержать только буквы
-    #   - телефон может быть только из:
-    #       - 11 символов, если начинается с 8
-    #       - 12 символов, если с +7
-    #       - Сделать проверку цифр после 8/+7?
-    #   - дата начала занятий должна быть не меньше сегодняшней
-    #   - кол-во оставшихся занятий должно быть не меньше 0
-
-    first_name: str | None = None
-    second_name: str | None = None
-    phone: str | None = None
-    remaining_visits: int | None = None
-    start_at: datetime | None = None
-    end_at: datetime | None = None
-
-
 class CreateSubscriptionModel(MixinId, _SubscriptionBaseModel):
     """Модель для создания абонемента пользователя"""
 
-    # TODO: добавить валидацию:
-    #   - имя и фамилия должны быть длиннее 2 символов и содержать только буквы
-    #   - телефон может быть только из:
-    #       - 11 символов, если начинается с 8
-    #       - 12 символов, если с +7
-    #       - Сделать проверку цифр после 8/+7?
-    #   - дата должна быть не меньше сегодняшней
-    #   - кол-во оставшихся занятий должно быть не меньше 0
-
-    phone: str = Field(min_length=11, max_length=12)
     registration_date: datetime = Field(
         default_factory=lambda: datetime.now(UTC).date()
     )
-    remaining_visits: int = Field(ge=0, default=0)
+
+
+class UpdateSubscriptionModel(BaseModel, _SubscriptionBaseModel):
+    """Модель для обновления данных абонемента (профиля пользователя)"""
+
+    start_at: datetime = Field(
+        default_factory=lambda: datetime.now(UTC).date()
+    )
+    end_at: datetime = Field(
+        default_factory=lambda: datetime.now(UTC).date()
+    )
