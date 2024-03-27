@@ -5,9 +5,9 @@ from pydantic import Field, BaseModel, constr, validator
 from src.types import EntryId
 from ..mixins import MixinStartEndTime, MixinId
 
-
+phone_number = constr(min_length == 11, max_length == 12)
 class PhoneNumber(BaseModel):
-    number: constr(min_length == 11, max_length == 12)
+    number: phone_number
 
     @validator("number")
     def validate_phone_number(cls, phone_number):
