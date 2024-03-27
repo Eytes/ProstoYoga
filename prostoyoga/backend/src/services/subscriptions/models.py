@@ -7,7 +7,7 @@ from ..mixins import MixinStartEndTime, MixinId
 
 
 class PhoneNumber(BaseModel):
-    number: constr(min_length=11, max_length=12)
+    number: constr[min_length=11, max_length=12]
 
     @validator('number')
     def validate_phone_number(cls, phone_number):
